@@ -1,4 +1,4 @@
-package de.appsfactory.mobilecomputing.networking
+package de.appsfactory.lecture.network
 
 import org.junit.Test
 
