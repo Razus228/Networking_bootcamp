@@ -4,12 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
 class MainActivity : ComponentActivity() {
 
@@ -17,12 +23,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = postsScreenRouteDefinition,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None },
+                            modifier = Modifier
+                        .background(MaterialTheme.colorScheme.background),
+
                 ) {
-                    PostsScreen()
+                    composable(postsScreenRouteDefinition) {
+                        PostsScreen(
+                            onPostClick = { post ->
+                                navController.navigate(commentsScreenRoute(post.id))
+                            }
+                        )
+                    }
+                    composable(
+                        commentsScreenRouteDefinition,
+                        arguments = listOf(
+                            navArgument(commentsScreenArgPostId) { type = NavType.LongType }
+                        )
+                    ) {
+                        CommentsScreen(onUpClick = { navController.navigateUp() })
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@ retrofit = "2.9.0"
 moshi = "1.15.0"
 okHttpLoggingInterceptor = "4.11.0"
 ksp = "1.9.10-1.0.13"
+navigation = "2.7.5"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -30,6 +31,7 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
+navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 # Retrofit
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }

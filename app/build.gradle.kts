@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.navigation)
 
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.moshiConverter)
